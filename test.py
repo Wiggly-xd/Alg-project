@@ -31,13 +31,12 @@ img=Image.open(r"1406_S1_2020.bmp")
 #img=Image.open("img.png")
 print("true");
 pixVal=list(img.getdata())
+#x, y = (img > 1000).nonzero()
+#vals=img[x, y];
+cordinate = x, y = 150, 59
+print(img.getpixel(cordinate))
 for i in pixVal:
-    if(i!=(0, 255, 0) and i!=(204, 232, 182) and i!=(252, 251, 210) and i!=(242, 213, 199)and i!=(224, 160, 128) and i!=(197, 224, 245)):
-        array=numpy.where(img==i)
-        coordinates=zip(array[0])
-        unique=list(set(list(coordinates)))
-        for j in array:
-            print(j);
+    #if(i!=(0, 255, 0) and i!=(204, 232, 182) and i!=(252, 251, 210) and i!=(242, 213, 199)and i!=(224, 160, 128) and i!=(197, 224, 245)):
     if i==(90, 90, 160):
         break
 #img=img.resize((6000, 8000))
