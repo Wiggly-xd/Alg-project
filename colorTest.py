@@ -24,9 +24,9 @@ for i in pixVal:
     #    print(color)
     r, g, b = [np.random.random(ny*nx).reshape((ny, nx)) for _ in range(3)]
 print(r)
-print("SPACE")
+print("")
 print(g)
-print("SPACE")
+print("")
 print(b)
 
 
