@@ -4,21 +4,14 @@ from matplotlib import pyplot as plt
 import shapefile
 import matplotlib
 import matplotlib.patches as patches
+import matplotlib.colors as color
 import os
 #from scipy import imageio
 import numpy
-def drawRedSquare(image, location, colour):
+def rgb_to_hex(rgb):
+    return '#'+'%02x%02x%02x' % rgb
 
-    x,y = location
-    w,h = 58.789155,66.210835
-
-    for row in range(h):
-        for col in range(w):
-            image[row+y][col+x] = colour
-
-    return image
-
-file=shapefile.Reader("img_shp/Export_Output_387.shp");
+file=shapefile.Reader("img_shp/Export_Output_387.shp")
 #file=shapefile.Reader("img_shp/AFO6.shp");
 #rec=file.record(2)
 fig=plt.figure(figsize=(10, 10))
@@ -35,7 +28,10 @@ längd=contain[2]-contain[0]
 höjd=contain[3]-contain[1]
 print("Längd= ",längd)
 print("Höjd= ",höjd)
-print("Propottioner= ",höjd/längd)
+print("Propottioner mellan bmp fil och shapefil längd= ",längd/1600)
+print("Propottioner mellan bmp fil och shapefil höjd= ",höjd/1200)
+widthDif=längd/1600
+heightDif=höjd/1200
 print(file)
 #Kordinat av shape 0
 print("Shape coord",len(shapes[0].bbox))
@@ -50,7 +46,6 @@ for i in range(howManyShapes):
     except:
         print (i)
 img=Image.open(r"img_shp/1406_S1_2020.bmp")
-ax.imshow(img)
         #plt.imshow(img)
 
 print("true")
@@ -70,7 +65,6 @@ for i in pixVal:
     if i==(90, 90, 160):
         break
     cordinate = x, y = width, height
-    color=img.getpixel(cordinate)
     if(i==(0, 255, 0)):
         outside=outside+1
     elif(i==(204, 232, 182)):
@@ -81,8 +75,18 @@ for i in pixVal:
         Myrmark=Myrmark+1
     elif(i==(224, 160, 128)):
         houses=houses+1
+        colors=rgb_to_hex(i)
+        print(width)
+        print(height)
+        rect = patches.Rectangle((387729+(width*widthDif),6464316+(height*heightDif)),widthDif,heightDif,linewidth=1,facecolor=colors)
+        ax.add_patch(rect)
     else:
         avverkad=avverkad+1
+    width=width+1
+    if width==1200:
+        width=0
+        height=height+1
+
 size=Mwidth*Mheight
 print("outside ",outside)
 print("Skogsmark ",Skogsmark)
@@ -92,8 +96,5 @@ print("hus ",houses)
 print("avverkad ",avverkad)
 print("total size ",size)
 print("Inte med ",size-outside-Skogsmark-Vatten-Myrmark-houses-avverkad)
-
-plt.figure()
-plt.imshow(img)
 
 plt.show()
