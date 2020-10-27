@@ -1,6 +1,6 @@
-def getCoordinate():
-    from PIL import Image
+from PIL import Image
     import time
+def getCoordinate():
     #img=Image.open(r"img_shp/test.bmp")
     t0 = time.time()
     img=Image.open(r"img_shp/1406_S1_2020.bmp")
