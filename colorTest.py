@@ -1,6 +1,5 @@
 from descartes import PolygonPatch
 from PIL import Image
-import shapefile
 import matplotlib
 import matplotlib.patches as patches
 import os
