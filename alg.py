@@ -38,7 +38,7 @@ def getCoordinate(offsetx,offsety):
 
     #img=Image.open(r"img_shp/test.bmp")
  #   t0 = time.time()
-    img=Image.open(r"img_shp/1406_S1_2021.bmp")
+    img=Image.open(r"img_shp/1406_S1_2021_U.bmp")
     pixVal=list(img.getdata())
     width, height=0,0
     for i in pixVal:
@@ -48,7 +48,7 @@ def getCoordinate(offsetx,offsety):
             width=0
             height=height+1
         if i!=(0, 255, 0) and i!=(197, 224, 245):
-            coordinate.append([Point(width*57.8+offsetx,height*57.8+offsety),i])
+            coordinate.append([Point(width*69.831+offsetx,height*69.695+offsety),i])
 #    t1 = time.time()
 #    total = t1-t0
 #    print(total/60)
@@ -58,6 +58,7 @@ def getCoordinate(offsetx,offsety):
 CoordinateColor=getCoordinate(offsetx,offsety)
 for x in CoordinateColor:
     i=isWithin(x[0], gdf)
-#    if i !=None:
-    print(i);
+    if i !=None:
+        print(i);
+        print (x[0]3    )
         #print(isWithin(x, gdf))
