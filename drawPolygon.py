@@ -39,5 +39,5 @@ for index,test in gdf1.iterrows():
 #im = im.point((1, 1), fill="white")
 #img.putpixel((1, 1), (0, 0, 0))
 #img.save()
-img.show()
+img = img.save('img_shp/POCarea.bmp')
 #ImageDraw.point(1,1, fill="Black")
